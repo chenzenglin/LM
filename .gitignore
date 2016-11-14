@@ -1,0 +1,12 @@
+*.o
+*.d
+*.so
+*.a
+*.bin
+*.autosave
+tags
+LM.config
+LM.files
+LM.includes
+LM.creator
+LM.creator.user
