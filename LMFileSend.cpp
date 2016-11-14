@@ -13,7 +13,7 @@ LMFileSend::LMFileSend(int newfd, uint32_t ip)
 
 void LMFileSend::process_send(int newfd, uint32_t ip)
 {
-    FILE *fp = fpopen(newfd, "r");
+    FILE *fp = fdopen(newfd, "r");
     char path[1024];
     fgets(path, sizeof(path), fp);
     path[strlen(path) - 1] = 0;
@@ -43,7 +43,7 @@ void LMFileSend::send_file(char *path)
     fflush(fp);
 }
 
-char *LMFileSend::change_cwd(char *path)
+char *LMFileSend::change_cwd(char *filename)
 {
     char realpathfile[4096];
     realpath(filename, realpathfile);
@@ -89,7 +89,7 @@ void LMFileSend::send_reg(char *path, FILE *fp)
     fprintf(fp, "%s\n", LM_SEPARATE);
     fprintf(fp, "%s\n", LM_REG);
     fprintf(fp, "%s\n", path);
-    fprintf(fp, "llu\n", (long long unsigned int)file_size(path));
+    fprintf(fp, "%llu\n", (long long unsigned int)file_size(path));
     char buf[1024];
     FILE *rfp = fopen(path, "r");
     while(1)

@@ -73,7 +73,7 @@ LMNetwork::LMNetwork()
     if(ret < 0)
     {
         printf("bind error\n");
-        close(fd);
+        close(_udpfd);
         exit(1);
     }
     int opt = 1;
@@ -85,9 +85,9 @@ void LMNetwork::handle_online(LMJson &json, uint32_t peerip)
 {
     string name = json.get(LM_NAME);
     LMCore::instance()->add_user(peerip, name);
-    LMCore resp;
+    LMJson resp;
     resp.add(LM_CMD, LM_ONLINEACK);
-    resp.add(LM_NAME, LMCore::instance()->name);
+    resp.add(LM_NAME, LMCore::instance()->_name);
     send(resp.print(), peerip);
 }
 
@@ -97,10 +97,10 @@ void LMNetwork::handle_online_ack(LMJson &json, uint32_t peerip)
     LMCore::instance()->add_user(peerip, name);
 }
 
-void LMNetwork::handle_send_msg(LMJosn &json)
+void LMNetwork::handle_send_msg(LMJson &json)
 {
     string name = json.get(LM_NAME);
-    string msg = JSOON.GET(LM_MSG);
+    string msg = json.get(LM_MSG);
     printf("%s say:%s\n", name.c_str(), msg.c_str());
 }
 

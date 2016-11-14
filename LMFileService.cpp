@@ -26,7 +26,7 @@ void LMFileService::sub_process_run()
     addr.sin_family = AF_INET;
     addr.sin_port = htons(LM_PORT_TCP);
     addr.sin_addr.s_addr = INADDR_ANY;
-    int ret = bind(_listenfd, (struct sockadde *)&addr, sizeof(addr));
+    int ret = bind(_listenfd, (struct sockaddr *)&addr, sizeof(addr));
     if(ret < 0)
     {
         printf("file trans services bind error\n");

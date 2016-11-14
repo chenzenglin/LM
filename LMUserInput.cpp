@@ -27,7 +27,7 @@ void LMUserInput::get_cmd()
 
 void LMUserInput::split_cmd()
 {
-    _args.cle(ar();
+    _args.clear();
     char *saveptr = NULL;
     char *first = strtok_r(_buf, ":", &saveptr);
     char *content = strtok_r(NULL, "\0", &saveptr);

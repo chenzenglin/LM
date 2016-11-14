@@ -14,7 +14,7 @@ public:
 
     void send_file(char *path);
 
-    char *change_cwd(char *path);
+    char *change_cwd(char *filename);
 
     int file_type(char *path);
 

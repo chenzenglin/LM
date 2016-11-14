@@ -22,7 +22,7 @@ void LMCore::add_user(uint32_t ip, string name)
 LMCore::LMCore()
 {
     _ips = LMUtil::get_local_ip_address();
-    _name = LMUtil::get_host_name();
+    _name = LMUtil::get_hostname();
     pthread_mutexattr_t attr;
     pthread_mutexattr_init(&attr);
     pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
